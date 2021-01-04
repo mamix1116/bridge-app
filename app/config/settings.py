@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pages.apps.PagesConfig',
+    'bridges.apps.BridgesConfig',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,6 +127,7 @@ USE_TZ = True
 # set static files directory and url path
 STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 # set upload files directory and url path
 MEDIA_URL = "/mediafiles/"

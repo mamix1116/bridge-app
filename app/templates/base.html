@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+    <!-- Head -->
+    <head>
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="Mami Enomoto">
+
+        <title>BridgeDagaBase</title>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'css/all.css' %}">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+        <!-- LightBos -->
+        <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
+        <!-- Custom -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+      </head>
+      <!-- End Head -->
+    <body>
+      <!-- Navbar -->
+      {% include 'partials/_navbar.html' %}
+
+      <!-- Main Contents -->
+      {% block content %}
+      {% endblock %}
+
+      <!-- Footer -->
+      {% include 'partials/_footer.html' %}
+
+      <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'js/lightbox.min.js' %}"></script>
+      <script src="{% static 'js/main.js' %}"></script>
+    </body>
+</html>
