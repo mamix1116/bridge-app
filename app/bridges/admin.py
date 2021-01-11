@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Bridge, ManagementOrganization
 
-# Register your models here.
+admin.site.register(ManagementOrganization)
+admin.site.register(Bridge)

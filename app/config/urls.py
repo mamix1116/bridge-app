@@ -23,6 +23,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('', include('pages.urls')),
     path('bridges/', include('bridges.urls')),
+    path('api/', include('bridges.api.urls')),
     path('admin/', admin.site.urls),
 ]
 
