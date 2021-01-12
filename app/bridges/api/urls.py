@@ -1,6 +1,6 @@
 from django.urls import path
 from bridges.api.views import (BridgeListCreateAPIView, BridgeDetailAPIView,
-                               ManagementOrganizationCreateAPIView)
+                               ManagementOrganizationListCreateAPIView)
 
 
 urlpatterns = [
@@ -13,7 +13,7 @@ urlpatterns = [
          name="bridge-detail"),
 
     path("mngorganizations/",
-         ManagementOrganizationCreateAPIView.as_view(),
+         ManagementOrganizationListCreateAPIView.as_view(),
          name="mngorganization-list"),
 
 

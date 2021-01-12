@@ -10,10 +10,10 @@ class BridgeSerializer(serializers.ModelSerializer):
 
 
 class ManagementOrganizationSerializer(serializers.ModelSerializer):
-    # bridges = BridgeSerializer(many=True, read_only=True)
-    bridges = serializers.HyperlinkedRelatedField(many=True,
-                                               read_only=True,
-                                               view_name="bridge-detail")
+    bridges = BridgeSerializer(many=True, read_only=True)
+    # bridges = serializers.HyperlinkedRelatedField(many=True,
+    #                                            read_only=True,
+    #                                            view_name="bridge-detail")
 
     class Meta:
         model = ManagementOrganization
