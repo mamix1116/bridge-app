@@ -20,7 +20,7 @@ WORKDIR $APP_HOME
 COPY ./Pipfile .
 COPY ./Pipfile.lock .
 RUN apk update && \
-    apk add postgresql-dev gcc python3-dev musl-dev libpq && \
+    apk add postgresql-dev gcc python3-dev musl-dev libpq jpeg-dev zlib-dev libjpeg && \
     pip install --upgrade pip && \
     pip install pipenv && \
     pipenv install --dev --system

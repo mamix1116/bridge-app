@@ -42,6 +42,7 @@ class Bridge(models.Model):
     longtitude = models.FloatField(verbose_name='経度', null=True, blank=True)
     have_alternative = models.BooleanField(verbose_name='代替路', null=True, default=False, blank=True)
     date_register = models.DateField(verbose_name='入力年月日', default=timezone.datetime.now,  null=True, blank=True)
+    image_main = models.ImageField(verbose_name='メイン画像', blank=True, upload_to='img/%Y/%m/%d/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
