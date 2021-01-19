@@ -1,6 +1,112 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block content %}
 <h1>Bridges</h1>
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'index' %}">
+            <i class="fas fa-home"></i> Home</a>
+        </li>
+        <li class="breadcrumb-item active"> Browse Bridges</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- Listings -->
+<section id="listings" class="py-4">
+  <div class="container">
+    <div class="row">
+      {% if bridges %}
+        {% for bridge in bridges %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card listing-preview">
+              <img class="card-img-top" src="{{ bridge.image_main.url }}" alt="">
+              <div class="card-img-overlay">
+                <h2>
+                  <span class="badge badge-secondary text-white">{{ bridge.management_organization }}</span>
+                </h2>
+              </div>
+              <div class="card-body">
+                <div class="listing-heading text-center">
+                  <h4 class="text-primary">{{ bridge.bridge_name }}</h4>
+                  <p>
+                    <i class="fas fa-map-marker text-secondary"></i> {{ bridge.location_city }} {{ bridge.location_address }}</p>
+                </div>
+                <hr>
+                <div class="row py-2 text-secondary">
+                  <div class="col-12">
+                    <i class="fas fa-road"></i> 路線: ({{ bridge.road_cd }}) {{ bridge.road_name }}</div>
+                  <div class="col-12">
+                    <i class="fas fa-calendar-alt"></i> 供用年: {{ bridge.fyear_start }}</div>
+                  <div class="col-12">
+                    <i class="fas fa-ruler-horizontal"></i> 橋長: {{ bridge.len_m }}m, 幅員: {{ bridge.wid_m }}m</div>
+                  <div class="col-12">
+                    <i class="fas fa-arrows-alt-h"></i> 径間数：{{ bridge.span_num }}</div>
+                </div>
+                <hr>
+                <div class="row text-secondary pb-2">
+                  <div class="col-12">
+                    <i class="fas fa-clock"></i> {{ bridge.date_register | timesince }} UPDATED</div>
+                </div>
+                <hr>
+                <a href="{% url 'bridge' bridge.id %}" class="btn btn-primary btn-block">More Info</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-md-12">
+          <p>No Listings Available</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        {% if bridges.has_other_pages %}
+          <ul class="pagination">
+            {% if bridges.has_previous %}
+              <li class="page-item">
+                <a href="?page={{bridges.previous_page_number}}" class="page-link">&laquo;</a>
+              </li>
+            {% else %}
+              <li class="page-item disabled">
+                <a class="page-link">&laquo;</a>
+              </li>
+            {% endif %}
+            {% for i in bridges.paginator.page_range %}
+              {% if bridges.number == i %}
+                <li class="page-item active">
+                  <a class="page-link">{{i}}</a>
+                </li>
+              {% else %}
+                <li class="page-item">
+                  <a href="?page={{i}}" class="page-link">{{i}}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+            {% if bridges.has_next %}
+              <li class="page-item">
+                <a href="?page={{bridges.next_page_number}}" class="page-link">&raquo;</a>
+              </li>
+            {% else %}
+              <li class="page-item disabled">
+                <a class="page-link">&raquo;</a>
+              </li>
+            {% endif %}
+          </ul>
+        {% endif %}
+      </div>
+    </div><!-- .row end -->
+  </div><!-- .container end -->
+</section>
 
 {% endblock %}
