@@ -38,7 +38,7 @@ jobs:
     - name: migration
       run: |
         cd app
-        python manage.py migration
+        python manage.py migrate
     - name: run test
       run: |
         cd app
