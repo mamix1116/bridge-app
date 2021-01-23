@@ -56,7 +56,7 @@ class Inspection(models.Model):
         db_table = 'inspection'
         verbose_name_plural = "点検"
 
-    bridge_name = models.ForeignKey(Bridge, on_delete=models.PROTECT, vervose_name="橋梁名称", related_name="inspections")
+    bridge_name = models.ForeignKey(Bridge, on_delete=models.PROTECT, verbose_name="橋梁名称", related_name="inspections")
     date_inspect = models.DateField(verbose_name='入力年月日', default=timezone.datetime.now,  null=True, blank=True)
 
     def __str__(self):
