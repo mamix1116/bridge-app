@@ -1,20 +1,12 @@
 from django.urls import path
-from bridges.api.views import (BridgeListCreateAPIView, BridgeDetailAPIView,
-                               ManagementOrganizationListCreateAPIView)
+from bridges.api.views import (BridgeViewset, ManagementOrganizationViewset)
+
+from rest_framework import routers
 
 
-urlpatterns = [
-    path("bridges/",
-         BridgeListCreateAPIView.as_view(),
-         name="bridge-list"),
+router = routers.DefaultRouter(trailing_slash='/?')
 
-    path("bridge/<int:pk>",
-         BridgeDetailAPIView.as_view(),
-         name="bridge-detail"),
+router.register('bridges', BridgeViewset)
+router.register('mngorganization', ManagementOrganizationViewset)
 
-    path("mngorganizations/",
-         ManagementOrganizationListCreateAPIView.as_view(),
-         name="mngorganization-list"),
-
-
-]
+urlpatterns = router.urls

@@ -5,8 +5,21 @@ from rest_framework import mixins
 # from rest_framework.response import Response
 # from rest_framework.views import APIView
 
+from rest_framework import viewsets
+
+
 from bridges.models import Bridge, ManagementOrganization
 from bridges.api.serializers import BridgeSerializer, ManagementOrganizationSerializer
+
+class BridgeViewset(viewsets.ModelViewSet):
+    queryset = Bridge.objects.all()
+    serializer_class = BridgeSerializer
+
+
+class ManagementOrganizationViewset(viewsets.ModelViewSet):
+    queryset = ManagementOrganization.objects.all()
+    serializer_class = ManagementOrganizationSerializer
+
 
 class BridgeListCreateAPIView(generics.ListCreateAPIView):
     queryset = Bridge.objects.all()
