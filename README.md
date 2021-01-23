@@ -1,6 +1,6 @@
 # bridge app
 
-日本全国の橋梁及び点検データを登録してAPIとして公開するプロジェクトです。
+日本全国の橋梁及び点検データを登録して API として公開するプロジェクトです。
 
 # 開発環境
 
@@ -27,3 +27,16 @@ pip install pipenv
 pipenv install --dev --system
 code .
 ```
+
+## docker-compose + local development server
+
+- prerequisites: python3 + venv
+
+```sh
+docker-compose -f docker-compose.development.yml -f docker-compose.development.local.yml up -d
+source app/venv/bin/activate
+set -a; source ./.env.development; source ./.env.development.local; set +a
+python app/manage.py runserver
+```
+
+entry point: http://localhost:8000
