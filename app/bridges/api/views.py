@@ -8,8 +8,8 @@ from rest_framework import mixins
 from rest_framework import viewsets
 
 
-from bridges.models import Bridge, ManagementOrganization
-from bridges.api.serializers import BridgeSerializer, ManagementOrganizationSerializer
+from bridges.models import Bridge, ManagementOrganization, Inspection
+from bridges.api.serializers import BridgeSerializer, ManagementOrganizationSerializer, InspectionSerializer
 
 class BridgeViewset(viewsets.ModelViewSet):
     queryset = Bridge.objects.all()
@@ -19,6 +19,11 @@ class BridgeViewset(viewsets.ModelViewSet):
 class ManagementOrganizationViewset(viewsets.ModelViewSet):
     queryset = ManagementOrganization.objects.all()
     serializer_class = ManagementOrganizationSerializer
+
+
+class InspectionViewset(viewsets.ModelViewSet):
+    queryset = Inspection.objects.all()
+    serializer_class = InspectionSerializer
 
 
 class BridgeListCreateAPIView(generics.ListCreateAPIView):

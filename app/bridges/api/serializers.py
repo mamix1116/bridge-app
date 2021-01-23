@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from bridges.models import ManagementOrganization, Bridge
+from bridges.models import ManagementOrganization, Bridge, Inspection
 
 class BridgeSerializer(serializers.ModelSerializer):
     # management_organization = ManagementOrganizationSerializer(read_only=True)
@@ -17,4 +17,10 @@ class ManagementOrganizationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ManagementOrganization
+        fields = "__all__"
+
+
+class InspectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Inspection
         fields = "__all__"
