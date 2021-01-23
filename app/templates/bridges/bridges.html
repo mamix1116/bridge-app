@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load humanize %}
+{% load static %}
 
 {% block content %}
 <h1>Bridges</h1>
@@ -28,7 +29,11 @@
         {% for bridge in bridges %}
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="card listing-preview">
-              <img class="card-img-top" src="{{ bridge.image_main.url }}" alt="">
+              {% if bridge.image_main %}
+                <img class="card-img-top" src="{{ bridge.image_main.url }}" alt="">
+              {% else %}
+                <img class="card-img-top" src="{% static 'img/noimage.jpg' %}" alt="">
+              {% endif %}
               <div class="card-img-overlay">
                 <h2>
                   <span class="badge badge-secondary text-white">{{ bridge.management_organization }}</span>
