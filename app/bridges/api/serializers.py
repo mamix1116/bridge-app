@@ -16,12 +16,13 @@ class BridgeSerializer(serializers.ModelSerializer):
 
     def get_last_inspection(self, obj):
         try:
-            last_inspection = models.Inspection.objects.filter(bridge_id=obj.id).order_by('-date_inspect').first()
+            last_inspection = Inspection.objects.filter(bridge_name_id=obj.id).order_by('-date_inspect').first()
         except Exception as e:
+            print(e)
             return None
-            if last_inspection is None:
-                return None
-            return InspectionSerializer(last_inspection).data
+        if last_inspection is None:
+            return None
+        return InspectionSerializer(last_inspection).data
 
 
 class ManagementOrganizationSerializer(serializers.ModelSerializer):
