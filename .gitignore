@@ -17,3 +17,6 @@ pip-delete-this-directory.txt
 
 ### macOS ###
 .DS_Store
+
+# Python
+app/venv
