@@ -9,7 +9,10 @@ class BridgeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bridge
         fields = ('id', 'bridge_id', 'bridge_name', 'bridge_name_yomi',
-                  'location_city', 'management_organization', 'last_inspection')
+                  'location_city', 'location_address','road_cd', 'road_name', 'fyear_start',
+                  'len_m', 'wid_m', 'span_num', 'latitude', 'longtitude', 'have_alternative',
+                  'date_register', 'image_main', 'created_at', 'updated_at', 'management_organization',
+                  'last_inspection')
 
     def get_last_inspection(self, obj):
         try:
