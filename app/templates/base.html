@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="ja" prefix="og: http://ogp.me/ns#">
+<html class="h-100" lang="ja" prefix="og: http://ogp.me/ns#">
     <!-- Head -->
     <head>
         <!-- Meta -->
@@ -22,13 +22,15 @@
 
       </head>
       <!-- End Head -->
-    <body>
+    <body class="d-flex flex-column h-100">
       <!-- Navbar -->
       {% include 'partials/_navbar.html' %}
 
-      <!-- Main Contents -->
-      {% block content %}
-      {% endblock %}
+      <main class="flex-shrink-0" role="main">
+        <!-- Main Contents -->
+        {% block content %}
+        {% endblock %}
+      </main>
 
       <!-- Footer -->
       {% include 'partials/_footer.html' %}
