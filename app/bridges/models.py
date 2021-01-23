@@ -57,7 +57,15 @@ class Inspection(models.Model):
         verbose_name_plural = "点検"
 
     bridge_name = models.ForeignKey(Bridge, on_delete=models.PROTECT, verbose_name="橋梁名称", related_name="inspections")
-    date_inspect = models.DateField(verbose_name='入力年月日', default=timezone.datetime.now,  null=True, blank=True)
+    date_inspect = models.DateField(verbose_name='点検年月日', default=timezone.datetime.now)
+    eval_overall = models.CharField(verbose_name='橋梁毎の判定', max_length=10, blank=True)
+    eval_comment = models.TextField(verbose_name='所見', blank=True, null=True, max_length=1000,)
+    eval_superstructure01 = models.CharField(verbose_name='判定 上部床版', max_length=10, blank=True)
+    eval_superstructure02 = models.CharField(verbose_name='判定 上部横桁', max_length=10, blank=True)
+    eval_superstructure03 = models.CharField(verbose_name='判定 上部床版', max_length=10, blank=True)
+    eval_substructure = models.CharField(verbose_name='判定 下部構造', max_length=10, blank=True)
+    eval_bearing = models.CharField(verbose_name='判定 支承部', max_length=10, blank=True)
+    eval_other = models.CharField(verbose_name='判定 その他', max_length=10, blank=True)
 
     def __str__(self):
-        return self.date_inspect
+        return self.date_inspect.strftime("%Y-%m-%d")
