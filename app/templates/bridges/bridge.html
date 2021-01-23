@@ -1,6 +1,115 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
+
 {% block content %}
-<h1>Bridge Info</h1>
+  <section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4">{{ bridge.bridge_name }}</h1>
+          <p class="lead">
+            <i class="fas fa-map-marker"></i> {{ bridge.management_organization }}, {{ bridge.city }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'bridges' %}">Bridges</a>
+          </li>
+          <li class="breadcrumb-item active">{{ bridge.bridge_name }}</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Bridge Info -->
+  <section id="listing" class="py-4">
+    <div class="container">
+      <a href="{% url 'bridges' %}" class="btn btn-light mb-4">Back To Bridges</a>
+      <div class="row">
+        <div class="col-md-9">
+          <!-- Home Main Image -->
+          <img src="{{ bridge.photo_main.url }}" alt="" class="img-main img-fluid mb-3">
+          <!-- Thumbnails -->
+          <div class="row mb-5 thumbs">
+            {% if bridge.image_main %}
+            <div class="col-md-2">
+              <a href="{{ bridge.image_main.url }}" data-lightbox="home-images">
+                <img src="{{ bridge.image_main.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+
+          </div>
+          <!-- Fields -->
+          <div class="row mb-5 fields">
+            <div class="col-md-6">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item text-secondary">
+                  <i class="fas fa-road"></i> 路線:
+                  <span class="float-right"> ({{ bridge.road_cd }}) {{ bridge.road_name }}</span>
+                </li>
+                <li class="list-group-item text-secondary">
+                  <i class="fas fa-calendar-alt"></i> 供用年:
+                  <span class="float-right">{{ bridge.fyear_start }}</span>
+                </li>
+                <li class="list-group-item text-secondary">
+                  <i class="fas fa-ruler-horizontal"></i> 橋長:
+                  <span class="float-right">{{ bridge.len_m }}m</span>
+                </li>
+                <li class="list-group-item text-secondary">
+                  <i class="fas fa-ruler-horizontal"></i> 幅員:
+                  <span class="float-right">{{ bridge.wid_m }}m
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item text-secondary">
+                  <i class="fas fa-arrows-alt-h"></i> 径間数：
+                  <span class="float-right">{{ bridge.span_num }}</span>
+                </li>
+                <li class="list-group-item text-secondary">
+                  <i class="fas fa-clock"></i> UPDATED:
+                  <span class="float-right">{{ bridge.date_register | timesince }}
+                  </span>
+                </li>
+
+
+              </ul>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="row mb-5">
+            <div class="col-md-12">
+                {{ bridge.description }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title">管理者</h5>
+              <h6 class="text-secondary">{{ bridge.management_organization }}</h6>
+            </div>
+          </div>
+          <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Make An Inquiry</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
 {% endblock %}
