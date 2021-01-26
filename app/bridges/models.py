@@ -78,15 +78,15 @@ class Damage(models.Model):
         db_table = 'damage'
         verbose_name_plural = "損傷"
 
-    date_inspect = models.ForeignKey(Inspection, on_delete=models.PROTECT, verbose_name="点検年月日")
+    date_inspect = models.ForeignKey(Inspection, on_delete=models.PROTECT, verbose_name="点検年月日", related_name="damages")
     damage_category = models.CharField(verbose_name='損傷の種類', max_length=25)
     damege_category_cd = models.PositiveSmallIntegerField(verbose_name='損傷の種類コード',
                                                     default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
     damage_rate = models.CharField(verbose_name='損傷程度', max_length=10)
     damage_memo = models.TextField(verbose_name='所見', blank=True, null=True, max_length=1000)
-    bridge_component = models.CharField(verbose_name='部材', max_length=25, blank=True)
+    bridge_component = models.CharField(verbose_name='工種', max_length=25, blank=True)
     bridge_material = models.CharField(verbose_name='材料', max_length=25, blank=True)
-    bridge_member = models.CharField(verbose_name='部位', max_length=25, blank=True)
+    bridge_member = models.CharField(verbose_name='部材', max_length=25, blank=True)
     span_cd = models.PositiveSmallIntegerField(verbose_name='スパン番号', null=True, blank=True)
 
     def __str__(self):
